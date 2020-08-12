@@ -11,6 +11,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $users = new \App\User();
+        $users->firstName = "Sophie";
+        $users->lastName = "Peeters";
+        $users->year = "eerste";
+        $users->bio = "Lorem Ipsum";
+        $users->save();    
     }
 }
