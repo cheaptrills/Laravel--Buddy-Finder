@@ -32,7 +32,7 @@ class UserController extends Controller
     public function handleLogin(Request $request){
         $credentials = $request->only(['email','password']);
         if( \Auth::attempt($credentials)){
-            
+            return redirect('/home'); 
         }
         
         return view('user/login');
