@@ -18,8 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
+    $data = [
+        
+    ];
     return view('home');
 });
+
+
 
 Auth::routes();
 
