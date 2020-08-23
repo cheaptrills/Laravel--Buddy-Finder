@@ -15,22 +15,23 @@
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted">Je mail is enkel voor je in te loggen</small>
             </div>
             <select name="moviegenre" id="moviegenre">
                 <option value=1>horror</option>
             </select>
             <select name="musicgenre" id="moviegenre">
-                <option value=1>horror</option>
+                <option value=1>House</option>
             </select>
             <select name="sport" id="moviegenre">
-                <option value=1>horror</option>
+                <option value=1>voetbal</option>
             </select>
             <select name="hobby" id="moviegenre">
-                <option value=1>horror</option>
+                <option value=1>dj'en</option>
             </select>
             <select name="course" id="moviegenre">
-                <option value=1>horror</option>
+                <option value=1>design</option>
+                <option value=2>development</option>
             </select>
             <div class="form-group">
                 <label for="password">Password</label>
