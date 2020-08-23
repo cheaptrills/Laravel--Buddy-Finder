@@ -19,15 +19,19 @@
             </div>
             <select name="moviegenre" id="moviegenre">
                 <option value=1>horror</option>
+                <option value=2>romantic</option>
             </select>
             <select name="musicgenre" id="moviegenre">
                 <option value=1>House</option>
+                <option value=2>jazz</option>
             </select>
             <select name="sport" id="moviegenre">
                 <option value=1>voetbal</option>
+                <option value=2>rugby</option>
             </select>
             <select name="hobby" id="moviegenre">
                 <option value=1>dj'en</option>
+                <option value=2>gamen</option>
             </select>
             <select name="course" id="moviegenre">
                 <option value=1>design</option>
