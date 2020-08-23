@@ -28,5 +28,6 @@ Route::get('/user/register', 'UserController@register');
 Route::post('/user/register', 'UserController@handleRegister');
 Route::get('/user/login', 'UserController@login');
 Route::post('/user/login', 'UserController@handleLogin');
+Route::get('/test', 'UserController@buddyFinder');
 
 //Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
