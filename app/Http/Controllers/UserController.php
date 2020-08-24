@@ -35,8 +35,12 @@ class UserController extends Controller
         if( \Auth::attempt($credentials)){
             return redirect('/home'); 
         }
-    
-        return view('user/login');
+        return view('/user/login');
+    }
+
+    public function logout(Request $request) {
+        \Auth::logout();
+        return redirect('/user/login');
     }
 
     public function buddyFinder(Request $request){
@@ -81,4 +85,36 @@ class UserController extends Controller
         
     }
 
+    public function profileInfo(Request $request){
+
+        $user = auth()->user();
+        return view("/user/profile", ["user"=>$user]);
+
+    } 
+
+    public function getUserById($id){
+
+        $user = \App\User::find($id);
+        return view("/user/profile", ["user"=>$user]);
+
+    } 
+
+  /*  public function showBuddies() {
+        $user_id = \Auth::user()->id;    
+        $friends = \App\Friend::all()=>where(function ($q){
+            q->where('f1' => $user_id)
+                ->where('accepted' => 1)
+        })->orWhere(function ($q) {
+            q->where('f2' => $user_id)
+                ->where('accepted' => 1)
+        }
+        
+        $friend_count = count($friends)
+        if($friend_count <= 0){
+            echo "Sorry you got no friends";
+            die;
+        }
+        
+        return view("buddies")
+    } */
 }
