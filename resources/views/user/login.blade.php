@@ -4,7 +4,7 @@
     <form method="post" action="">
 
     @auth 
-        <div class="alert alert-info">we are logged in</div>
+        <div class="alert alert-info">you are logged in</div>
     @endauth
 
         {{csrf_field()}}
