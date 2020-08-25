@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Image;
 
 class UserController extends Controller
 {
     public function register(){
+        if(\Auth::check()){   
+            return view('/home');
+        }
         return view('user/register');
     }
 
@@ -20,22 +24,28 @@ class UserController extends Controller
         $user->sport = $request->input('sport');
         $user->hobby = $request->input('hobby');
         $user->course = $request->input('course');
+        $user->buddy = $request->input('buddy');
         $user->password = \Hash::make($request->input('password'));
         $user->save();
-        dd($user);
-       // return view('user/register');
+        return view('/home');
     }
 
     public function login(){
+        if(\Auth::check()){   
+            return view('/home');
+        }
         return view('user/login');
     }
 
     public function handleLogin(Request $request){
-        $credentials = $request->only(['email','password']);
-        if( \Auth::attempt($credentials)){
-            return redirect('/home'); 
+        if(\Auth::check()){   
+            return view('/home');
         }
-        return view('/user/login');
+        $credentials = $request->only(['email','password']);
+            if( \Auth::attempt($credentials)){
+                return redirect('/home'); 
+            }
+            return view('/user/login');
     }
 
     public function logout(Request $request) {
@@ -92,6 +102,47 @@ class UserController extends Controller
 
     } 
 
+    public function profileEdit(Request $request){
+        
+        if(\Auth::check()){  
+            $user = auth()->user(); 
+            return view("/user/edit", ["user"=>$user]);
+        }
+        return view('/');
+    }
+
+    public function handleProfileEdit(Request $request){
+        
+        $user = auth()->user();
+        if (\Hash::check($request->input('password'), $user->password)) {
+
+            $user->name = $request->input('name');
+            if($request->hasFile('avatar')){
+                $avatar = $request->file('avatar');
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
+                $user->avatar = $filename;
+            }
+            $user->email = $request->input('email');
+            $user->moviegenre = $request->input('moviegenre');
+            $user->musicgenre = $request->input('musicgenre');
+            $user->sport = $request->input('sport');
+            $user->hobby = $request->input('hobby');
+            $user->course = $request->input('course');
+            $user->buddy = $request->input('buddy');
+
+            if($request->input('password2') === $request->input('password3')){
+                if(!empty($request->input('password2'))){
+                    $user->password = \Hash::make($request->input('password2'));
+                }
+            }   
+            $user->save();
+        }  
+        
+
+        return view('/user/edit', array('user' => \Auth::user()) );    
+    }
+
     public function getUserById($id){
 
         $user = \App\User::find($id);
@@ -115,6 +166,6 @@ class UserController extends Controller
             die;
         }
         
-        return view("buddies")
+        return view("/user/friends")
     } */
 }
