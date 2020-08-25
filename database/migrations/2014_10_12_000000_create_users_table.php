@@ -16,13 +16,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('year')->default('2020'); 
+            $table->string('moviegenre');
+            $table->string('musicgenre');
+            $table->string('hobby');
+            $table->string('sport');
+            $table->string('course');
+            $table->integer('buddy');
+            $table->string('bio')->default('Example bio'); 
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('avatar')->default('default.jpg'); 
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.

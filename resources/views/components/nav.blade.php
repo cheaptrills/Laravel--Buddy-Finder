@@ -3,13 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>IMD buddy finder</title>
-
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
@@ -21,7 +15,7 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 10vh;
             }
 
             .flex-center {
@@ -63,29 +57,16 @@
             }
         </style>
     </head>
-    <body>
         <div class="flex-center position-ref full-height">
             
                 <div class="top-right links">
                     
-                        <a href="{{ url('home') }}">Home</a>
+                        <a href="{{ url('/') }}">Home</a>
                     
                         <a href="{{ url('/user/login') }}">Login</a>
                        
                         <a href="{{ url('/user/register') }}">Register</a>
                       
                 </div>
-           
-
-            <div class="content">
-                <div id="video-container">
-                    <img src="2x/omslag1@2x.png" alt="Smiley face">
-                </div>
-
-                <div class="header">
-                    <h1>The only way is up</h1>
-                </div>
-            </div>
         </div>
-    </body>
 </html>
