@@ -17,11 +17,12 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('year')->default('2020'); 
-            $table->integer('moviegenre');
-            $table->integer('musicgenre');
-            $table->integer('hobby');
-            $table->integer('sport');
-            $table->integer('course');
+            $table->string('moviegenre');
+            $table->string('musicgenre');
+            $table->string('hobby');
+            $table->string('sport');
+            $table->string('course');
+            $table->integer('buddy');
             $table->string('bio')->default('Example bio'); 
             $table->string('email')->unique();
             $table->string('avatar')->default('default.jpg'); 
