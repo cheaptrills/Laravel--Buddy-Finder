@@ -23,6 +23,10 @@
                 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="geef je school-email">
                 <small id="emailHelp" class="form-text text-muted">Je mail is enkel voor je in te loggen</small>
             </div>
+            <div class="form-group">
+                <label for="email">bio</label>
+                <textarea name="bio" id="" cols="30" rows="10"></textarea>
+            </div>
             <div class="row">
                 <div class="col-md-2">
                     <div>moviegenre</div>
