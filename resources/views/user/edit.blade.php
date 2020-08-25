@@ -25,6 +25,10 @@
                 <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{$user->email}}">
                 <small id="emailHelp" class="form-text text-muted">Je mail is enkel voor je in te loggen</small>
             </div>
+            <div class="form-group">
+                <label for="email">bio</label>
+                <textarea name="bio" id="" cols="30" rows="10">{{$user->bio}}</textarea>
+            </div>
             <div class="row">
                 <div class="col-md-2">
                     <div>moviegenre</div>
