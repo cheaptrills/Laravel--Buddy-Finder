@@ -30,8 +30,12 @@ Route::get('/user/login', 'UserController@login');
 Route::post('/user/login', 'UserController@handleLogin');
 
 Route::get('/test', 'UserController@buddyFinder');
+
 Route::get('/user/profile', 'UserController@profileInfo');
 Route::get('user/profile/{id}', 'UserController@getUserById');
+
+Route::get('/user/edit', 'UserController@profileEdit');
+Route::post('/user/edit', 'UserController@handleProfileEdit');
 
 Route::get('/user/logout', 'UserController@logout');
 
