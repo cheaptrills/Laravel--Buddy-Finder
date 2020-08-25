@@ -1,5 +1,10 @@
 @if(Auth::check())
     @extends('layouts.app')
+    @section('title')
+    Homepage
+    @endsection
+    @component('components/navbar');
+    @endcomponent
     @section('content')
     <div class="container">
         <div class="row justify-content-center">
