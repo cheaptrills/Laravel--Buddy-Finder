@@ -13,6 +13,9 @@
 		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
     	    <div class=" profile">
                 <div class="col-sm-20">
+                @if ($user->id == Auth::id())
+                    <a href="/user/edit">edit</a>
+                @endif
                     <div class="col-xs-12 col-sm-6">
                         <h2>{{$user->name}}</h2>
                         <p><strong>Keuzerichting: </strong>{{$user->course}} </p>
@@ -36,7 +39,7 @@
                 </div>
                 <div class="col-sm-12  text-center">
                         <p><strong>bio: </strong> {{$user->bio}} </p>
-                    </div>
+                </div>
     	    </div>                 
 		</div>
 	</div>
