@@ -1,12 +1,11 @@
 @extends('layouts/app')
-
+@section('title')
+    Login
+@endsection
 @section('content')
     <form method="post" action="">
-
-    @auth 
-        <div class="alert alert-info">you are logged in</div>
-    @endauth
-
+        @component('components/nav');
+        @endcomponent
         {{csrf_field()}}
         <h2>Log in</h2>
         <div class="form-group">
