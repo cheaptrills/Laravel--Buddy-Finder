@@ -34,7 +34,8 @@
                                         {{csrf_field()}}
                                         <input type="hidden" name="friendId" value={{$user->id}} />
                                         <input type="submit" value="Voeg toe" />
-                                    </form>                    </div>
+                        </form>                    
+                    </div>
                 </div>            
                 <div class="col-sm-12  text-center">
                     <br><br>                    
