@@ -30,8 +30,11 @@
                         </figure>
                         <div class="col-xs-12 emphasis">
                         <h2><strong> </strong></h2>                    
-                        <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Voeg toe </button>
-                    </div>
+                        <form method="POST" action="/addfriend">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="friendId" value={{$user->id}} />
+                                        <input type="submit" value="Voeg toe" />
+                                    </form>                    </div>
                 </div>            
                 <div class="col-sm-12  text-center">
                     <br><br>                    
