@@ -19,21 +19,21 @@
                             </div>
                         @endif
                         <div class="row">
-                        @foreach($result as $user)
-                        <div class="col-sm">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="/uploads/avatars/{{ $user->avatar }}" class="img-circle img-responsive" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$user->name}}</h5>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">{{$user->course}}</li>
-                                </ul>
-                                <div class="card-body">
-                                    <a href="/user/profile/{{$user->id}}" class="card-link">profiel</a>
+                        @foreach($friends as $friend)
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="/uploads/avatars/{{ $friend->f1image }}" class="img-circle img-responsive" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$friend->friend1}}</h5>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{{$friend->f1course}}</li>
+                                    </ul>
+                                    <div class="card-body">
+                                        <a href="/user/profile/{{$friend->f1id}}" class="card-link">profiel</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                         </div>
                     </div>
