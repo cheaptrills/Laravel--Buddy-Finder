@@ -174,7 +174,7 @@ class UserController extends Controller
         $user = \App\User::find($id);
         return view("/user/profile", ["user"=>$user]);
 
-    } 
+    }
 
   /*  public function showBuddies() {
         $user_id = \Auth::user()->id;    
