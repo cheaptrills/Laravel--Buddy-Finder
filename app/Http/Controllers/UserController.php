@@ -10,13 +10,12 @@ class UserController extends Controller
 {
     public function register(){
         if(\Auth::check()){   
-            return view('/home');
+            return redirect('/home');
         }
-        return view('user/register');
+        return view('/user/register');
     }
 
     public function handleRegister(Request $request){
-
         $validation = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -36,7 +35,8 @@ class UserController extends Controller
         $user->buddy = $request->input('buddy');
         $user->password = \Hash::make($request->input('password'));
         $user->save();
-        return view('/home');
+
+        return redirect('/user/login');
     }
 
     public function login(){

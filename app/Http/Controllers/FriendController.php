@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use App\Friendship;
 use Image;
 
@@ -13,13 +14,17 @@ class FriendController extends Controller
 
         $user = auth()->user();
 
-        $friendid = $request->input('friendId');
-
-        $request = new Friendship();
-        $request->friend1 = $user->id;
-        $request->friend2 = $friendid;
-        $request->accepted = false;
-        $request->save();
+        try {
+            $friendid = $request->input('friendId');
+            $request = new Friendship();
+            $request->friend1 = $user->id;
+            $request->friend2 = $friendid;
+            $request->accepted = false;
+            $request->create();
+        } catch (Illuminate\Database\QueryException $exception) {
+            dd($exception);
+        }
+        return redirect("/home");
 
     }
 
@@ -35,7 +40,7 @@ class FriendController extends Controller
 
         $user = auth()->user();
 
-        $requests = Friendship::select('users.name', 'users.bio', 'friendships.id')
+        $requests = Friendship::select('users.name','users.course','users.id as uid', 'users.bio', 'friendships.id')
             ->join('users', 'users.id', '=', 'friendships.friend1')
             ->where(['accepted'=> false, 'friend2'=>$user->id])->get();
         
@@ -45,38 +50,23 @@ class FriendController extends Controller
     public function getFriends(){
         $user = auth()->user();
         $user_id = $user->id;
+        $requests = DB::table('friendships as fs')
+            ->select('f1.name as friend1',
+                     'f1.avatar as f1image',
+                     'f1.id as f1id', 
+                     'f1.course as f1course', 
 
-        
-        $requests = Friendship::select('users.name', 'users.bio', 'friendships.id')
-            ->join('users', 'users.id', '=', 'friendships.friend1')
-            ->join('users', 'users.id', '=', 'friendships.friend2')
-            ->where(function ($q){
-                $q->where('friend1', $user_id)
-                    ->where('accepted', 1);
-            })->orWhere(function ($q) {
-                $q->where('friend2', $user_id)
-                    ->where('accepted', 1);
-            })
+                     'f2.name as friend2', 
+                     'f2.avatar as f1image',
+                     'f2.id as f2id', 
+                     'f2.course as f2course', 
+                     'fs.accepted')
+            ->leftJoin('users as f1', 'f1.id', '=', 'fs.friend1')
+            ->join('users as f2', 'f2.id', '=', 'fs.friend2')
+            ->where('accepted', '=', 1, 'AND', ['f1.id', '=', $user_id, 'OR', 'f2.id', '=', $user_id])
             ->get();
-        dd($requests);
-        /*$user_id = \Auth::user()->id;    
-        $friends = Friendship::all()->where(function ($q){
-            q->where('friend1' => $user_id)
-                ->where('accepted' => 1)
-        })->orWhere(function ($q) {
-            q->where('friend2' => $user_id)
-                ->where('accepted' => 1)
-        })
-        
-        $friend_count = count($friends)
-        if($friend_count <= 0){
-            echo "Sorry you got no friends";
-            die;
-        }
-        
-        return view("buddies")*/
 
-        return view("/user/friends", ["user"=>$user]);
+        return view("/user/friendList", ["user"=>$user, 'friends'=>$requests]);
 
     }
 }
