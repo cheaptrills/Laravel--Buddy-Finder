@@ -14,13 +14,17 @@ class FriendController extends Controller
 
         $user = auth()->user();
 
-        $friendid = $request->input('friendId');
-
-        $request = new Friendship();
-        $request->friend1 = $user->id;
-        $request->friend2 = $friendid;
-        $request->accepted = false;
-        $request->save();
+        try {
+            $friendid = $request->input('friendId');
+            $request = new Friendship();
+            $request->friend1 = $user->id;
+            $request->friend2 = $friendid;
+            $request->accepted = false;
+            $request->create();
+        } catch (Illuminate\Database\QueryException $exception) {
+            dd($exception);
+        }
+        return redirect("/home");
 
     }
 
@@ -36,7 +40,7 @@ class FriendController extends Controller
 
         $user = auth()->user();
 
-        $requests = Friendship::select('users.name', 'users.bio', 'friendships.id')
+        $requests = Friendship::select('users.name','users.course','users.id as uid', 'users.bio', 'friendships.id')
             ->join('users', 'users.id', '=', 'friendships.friend1')
             ->where(['accepted'=> false, 'friend2'=>$user->id])->get();
         
