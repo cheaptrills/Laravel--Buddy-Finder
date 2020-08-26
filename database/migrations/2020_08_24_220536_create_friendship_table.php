@@ -15,8 +15,8 @@ class CreateFriendshipTable extends Migration
     {
         Schema::create('friendship', function (Blueprint $table) {
             $table->id();
-            $tabel->integer('friend1');
-            $tabel->integer('friend2');
+            $table->integer('friend1');
+            $table->integer('friend2');
             $table->timestamps();
         });
     }

@@ -1,0 +1,30 @@
+version: '3'
+
+services: 
+    laravel:
+        environment:
+            - DB_HOST=mariadb
+            - DB_USERNAME=my_user
+            - DB_DATABASE=my_database
+            - DB_PASSWORD=my_password
+        depends_on:
+            - mariadb
+        ports:
+            - 80:3000
+        volumes: 
+            - laravel:/app/public/uploads
+        build: .
+
+    mariadb:
+        image: 'docker.io/bitnami/mariadb:10.2-debian-10'
+        volumes: 
+            - database:/bitnami/mariadb/data
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+            - MARIADB_USER=my_user
+            - MARIADB_DATABASE=my_database
+            - MARIADB_PASSWORD=my_password
+
+volumes: 
+    laravel:
+    database:
