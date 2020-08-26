@@ -36,7 +36,7 @@ class UserController extends Controller
         $user->buddy = $request->input('buddy');
         $user->password = \Hash::make($request->input('password'));
         $user->save();
-        return view('/home');
+        return view('/user/login');
     }
 
     public function login(){
