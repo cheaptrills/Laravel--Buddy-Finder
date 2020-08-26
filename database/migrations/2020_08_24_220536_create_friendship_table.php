@@ -13,10 +13,12 @@ class CreateFriendshipTable extends Migration
      */
     public function up()
     {
-        Schema::create('friendship', function (Blueprint $table) {
+        Schema::create('friendships', function (Blueprint $table) {
             $table->id();
             $table->integer('friend1');
             $table->integer('friend2');
+            $table->boolean('accepted');
+            $table->unique(array('friend1', 'friend2'));
             $table->timestamps();
         });
     }
