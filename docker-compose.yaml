@@ -1,5 +1,4 @@
 version: '3'
-
 services: 
     laravel:
         environment:
@@ -9,8 +8,6 @@ services:
             - DB_PASSWORD=my_password
         depends_on:
             - mariadb
-        ports:
-            - 80:3000
         volumes: 
             - laravel:/app/public/uploads
         build: .
@@ -24,7 +21,15 @@ services:
             - MARIADB_USER=my_user
             - MARIADB_DATABASE=my_database
             - MARIADB_PASSWORD=my_password
-
+    nginx:
+        image: nginx
+        volumes: 
+            - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./data:/app
+        ports:
+            - 0.0.0.0:80:80
+            - 0.0.0.0:443:443
 volumes: 
+    certs:
     laravel:
     database:

@@ -40,5 +40,12 @@ Route::post('/user/edit', 'UserController@handleProfileEdit');
 
 Route::get('/user/logout', 'UserController@logout');
 
+Route::post('/addfriend', 'FriendController@sendFriendRequest');
+
+Route::get('/friendrequests', 'FriendController@friendRequests');
+Route::post('/friendrequests', 'FriendController@acceptRequest');
+
+Route::get('/friends', 'FriendController@getFriends');
+
 
 //Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -25,18 +25,12 @@
                                 <img class="card-img-top" src="/uploads/avatars/{{ $user->avatar }}" class="img-circle img-responsive" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">{{$user->name}}</h5>
-                                    <h5 class="card-title">{{$user->percentage}}% matched</h5>
                                 </div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">{{$user->course}}</li>
                                 </ul>
                                 <div class="card-body">
-                                    <form method="POST" action="/addfriend">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="friendId" value={{$user->id}} />
-                                        <a href="/user/profile/{{$user->id}}" class="card-link">profiel</a>
-                                        <input type="submit" value="Voeg toe" />
-                                    </form>
+                                    <a href="/user/profile/{{$user->id}}" class="card-link">profiel</a>
                                 </div>
                             </div>
                         </div>
@@ -51,4 +45,3 @@
 @else
  no authorataaaah
 @endif
-
