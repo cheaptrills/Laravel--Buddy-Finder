@@ -19,6 +19,7 @@ class UserController extends Controller
         $user = new \App\User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->bio = $request->input('bio');
         $user->moviegenre = $request->input('moviegenre');
         $user->musicgenre = $request->input('musicgenre');
         $user->sport = $request->input('sport');
@@ -90,7 +91,9 @@ class UserController extends Controller
             $sortedResults = Arr::sort($result, function($sort)
             {
                 return -$sort->percentage;
-            });        
+            });    
+            return view("/home", ["result"=>$result,"user"=>$user]);
+    
         }
         
     }
@@ -124,6 +127,7 @@ class UserController extends Controller
                 $user->avatar = $filename;
             }
             $user->email = $request->input('email');
+            $user->bio = $request->input('bio');
             $user->moviegenre = $request->input('moviegenre');
             $user->musicgenre = $request->input('musicgenre');
             $user->sport = $request->input('sport');

@@ -18,9 +18,26 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {{ __('You are logged in!') }}
-                        test
+                        <div class="row">
+                        @foreach($result as $user)
+                        <div class="col-sm">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="/uploads/avatars/{{ $user->avatar }}" class="img-circle img-responsive" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$user->name}}</h5>
+                                    <h5 class="card-title">{{$user->percentage}}% matched</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{$user->course}}</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="/user/profile/{{$user->id}}" class="card-link">profiel</a>
+                                    <a href="#" class="card-link">voeg toe</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
