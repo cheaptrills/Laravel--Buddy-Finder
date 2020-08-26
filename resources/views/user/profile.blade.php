@@ -29,8 +29,7 @@
                             <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; width:150px" alt="" class="img-circle img-responsive">
                         </figure>
                         <div class="col-xs-12 emphasis">
-                        <h2><strong> 20,7K </strong></h2>                    
-                        <p><small>vrienden</small></p>
+                        <h2><strong> </strong></h2>                    
                         <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Voeg toe </button>
                     </div>
                 </div>            
