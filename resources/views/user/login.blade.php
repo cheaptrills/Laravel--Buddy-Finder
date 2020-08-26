@@ -7,6 +7,16 @@
         @component('components/nav');
         @endcomponent
         {{csrf_field()}}
+        @if( $errors->any())
+            @component('components/alert')
+                @slot('type', 'danger')
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endcomponent
+        @endif
         <h2>Log in</h2>
         <div class="form-group">
             <label for="email">Email address</label>

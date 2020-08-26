@@ -16,6 +16,14 @@ class UserController extends Controller
     }
 
     public function handleRegister(Request $request){
+
+        $validation = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+
+        ]);
+
         $user = new \App\User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -42,6 +50,13 @@ class UserController extends Controller
         if(\Auth::check()){   
             return view('/home');
         }
+
+        $validation = $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+
+        ]);
+
         $credentials = $request->only(['email','password']);
             if( \Auth::attempt($credentials)){
                 return redirect('/home'); 
@@ -115,6 +130,13 @@ class UserController extends Controller
     }
 
     public function handleProfileEdit(Request $request){
+
+        $validation = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+
+        ]);
         
         $user = auth()->user();
         if (\Hash::check($request->input('password'), $user->password)) {

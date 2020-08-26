@@ -11,21 +11,32 @@
         @component('components/nav');
         @endcomponent
 
+        @if( $errors->any())
+            @component('components/alert')
+                @slot('type', 'danger')
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endcomponent
+        @endif
+
         <h2>Create a new account</h2>
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="geef je volledige naam">
+                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="geef je volledige naam" value="{{old('name')}}">
             </div>
 
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="geef je school-email">
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="geef je school-email" value="{{old('email')}}">
                 <small id="emailHelp" class="form-text text-muted">Je mail is enkel voor je in te loggen</small>
             </div>
             <div class="form-group">
-                <label for="email">bio</label>
-                <textarea name="bio" id="" cols="30" rows="10"></textarea>
+                <label for="bio">bio</label>
+                <textarea name="bio" id="" cols="30" rows="10">{{old('bio')}}</textarea>
             </div>
             <div class="row">
                 <div class="col-md-2">
@@ -48,16 +59,19 @@
                 <div class="col-md-2">
                     <div>hobby</div>
                     <select name="hobby" id="moviegenre">
+                        <option value="{{old('hobby')}}">{{old('hobby')}}</option>
                         <option value="djen">dj'en</option>
                         <option value="gamen">gamen</option>
                     </select>
                     <div>keuzerichting</div>
                     <select name="course" id="moviegenre">
+                        <option value="{{old('course')}}">{{old('course')}}</option>
                         <option value="design">design</option>
                         <option value="development">development</option>
                     </select>
                     <div>buddy zoeker of buddy</div>
                     <select name="buddy" id="moviegenre">
+                        <option value="{{old('buddy')}}">{{old('buddy')}}</option>
                         <option value=1>zoeker</option>
                         <option value=2>buddy</option>
                     </select>

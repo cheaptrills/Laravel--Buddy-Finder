@@ -10,6 +10,16 @@
 <div class="container">
     <form  method="post" enctype="multipart/form-data" action="/user/edit">
         {{csrf_field()}}
+        @if( $errors->any())
+            @component('components/alert')
+                @slot('type', 'danger')
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endcomponent
+        @endif
         <h2>edit profile</h2>
             <div class="form-group">
                 <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; width:150px" alt="" class="img-circle img-responsive">
